@@ -2,8 +2,8 @@
 import { useGetAllTasksQuery } from "@/redux/api/todoApi";
 import AddTodoModal from "./AddTodoModal";
 import TodoCard from "./TodoCard";
-import TodoFilter from "./TodoFilter";
 import { useState } from "react";
+import Navbar from "../ui/Navbar";
 
 type TodoCardProps = {
   id: string;
@@ -11,6 +11,8 @@ type TodoCardProps = {
   description: string;
   isCompleted?: boolean;
   priority?: string;
+  deadline: string;
+  assignedTo: string;
 };
 
 const TodoContainer = () => {
@@ -20,9 +22,9 @@ const TodoContainer = () => {
   const todos = todo?.data;
   return (
     <div>
+      <Navbar priority={priority} setPriority={setPriority}/>
       <div className="flex justify-between mb-5">
         <AddTodoModal />
-        <TodoFilter priority={priority} setPriority={setPriority} />
       </div>
       <div className="bg-primary-gradient p-[5px] w-full h-full rounded-xl">
         <div className="bg-white p-5 w-full h-full rounded-lg space-y-4">

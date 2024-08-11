@@ -8,6 +8,8 @@ type TodoCardProps = {
   description: string;
   isCompleted?: boolean;
   priority?: string;
+  deadline: string;
+  assignedTo: string;
 }
 
 const TodoCard = ({title, description, id, isCompleted, priority}: TodoCardProps) => {
