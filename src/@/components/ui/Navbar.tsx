@@ -1,7 +1,7 @@
 import { IoMdSearch } from "react-icons/io";
 import TodoFilter from "../todo/TodoFilter";
 
-const Navbar = ({priority, setPriority}: { priority: string, setPriority: (value: string) => void }) => {
+const Navbar = () => {
   return (
     <>
       <div className="flex rounded-[20px] my-8 justify-between max-h-20 p-4 shadow-[#c4c5c6] shadow-md bg-[#ECEDEE] items-center">
@@ -14,7 +14,7 @@ const Navbar = ({priority, setPriority}: { priority: string, setPriority: (value
           />
         </div>
         <div>
-          <TodoFilter priority={priority} setPriority={setPriority} />
+          <TodoFilter />
         </div>
       </div>
     </>

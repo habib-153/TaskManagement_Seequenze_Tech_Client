@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useAddTaskMutation } from "@/redux/api/todoApi";
+import { FaPlus } from "react-icons/fa";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
@@ -56,9 +57,7 @@ const AddTodoModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-primary-gradient text-xl font-semibold">
-          Add todo
-        </Button>
+      <Button className="bg-[#0d062d] text-white w-full rounded-3xl flex items-center gap-2 my-4"><FaPlus /> Add task</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
