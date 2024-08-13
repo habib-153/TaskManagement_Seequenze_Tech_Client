@@ -24,6 +24,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import CustomInput from "../form/CustomInput";
 import CustomDatePicker from "../form/CustomDatePicker";
 import { IFormInput } from "@/types";
+import { toast } from "sonner";
 
 const AddTodoModal = () => {
   const { control, handleSubmit } = useForm<IFormInput>();
@@ -31,17 +32,26 @@ const AddTodoModal = () => {
 
   const [addTask] = useAddTaskMutation();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    // console.log(data);
     const taskDetails = {
       title: data.title,
       description: data.description,
-      isCompleted: false,
+      status: 'to-do',
       priority: priority,
+      deadline: data.deadline,
+      assignedTo: data.assignedTo,
     };
     console.log(taskDetails);
 
-    //addTask(taskDetails);
+    const result = await addTask(taskDetails)
+    //console.log(result.error)
+    if (result?.error) {
+      toast.error(result?.error?.data?.message)
+    }
+    else{
+      toast.success(result?.data?.message)
+    }
   };
 
   return (
@@ -51,7 +61,7 @@ const AddTodoModal = () => {
           <FaPlus /> Add task
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent aria-describedby={undefined} className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 border-b pb-2">
             <div className="size-[8px] rounded-full bg-[#20E7F4]"></div>

@@ -24,3 +24,9 @@ export interface IFormInput {
   deadline: Date
   assignedTo: string;
 }
+
+export type  TTodoTitleProps = {
+  color: string;
+  length: number;
+  text: string;
+}
