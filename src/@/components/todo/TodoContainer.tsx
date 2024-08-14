@@ -4,21 +4,14 @@ import TodoCard from "./TodoCard";
 import { useAppSelector } from "@/redux/hook";
 import { TodoCardProps } from "../../../types";
 import TodoTitle from "./TodoTitle";
+import { categoriesTask } from "@/utils/categoriesTask";
 
 const TodoContainer = () => {
   const { priority } = useAppSelector((state) => state.filter);
 
   const { data } = useGetAllTasksQuery(priority);
 
-  const toDo = data?.data?.filter(
-    (item: TodoCardProps) => item.status === "to-do"
-  );
-  const onProgress = data?.data?.filter(
-    (item: TodoCardProps) => item.status === "in-progress"
-  );
-  const done = data?.data?.filter(
-    (item: TodoCardProps) => item.status === "done"
-  );
+  const [toDo, onProgress, done] = categoriesTask(data?.data)
 
   // console.log(toDo.length, onProgress.length, done.length);
   return (

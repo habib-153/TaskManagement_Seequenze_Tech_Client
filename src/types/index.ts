@@ -14,7 +14,7 @@ export type TodoCardProps = {
 
 export type TSidebarCardProps = {
   text: string;
-  number: string;
+  number: number;
   logo: JSX.Element;
 }
 export interface IFormInput {

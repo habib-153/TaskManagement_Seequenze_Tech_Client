@@ -37,7 +37,6 @@ const AddTodoModal = () => {
     const taskDetails = {
       title: data.title,
       description: data.description,
-      status: 'to-do',
       priority: priority,
       deadline: data.deadline,
       assignedTo: data.assignedTo,
@@ -45,7 +44,7 @@ const AddTodoModal = () => {
     console.log(taskDetails);
 
     const result = await addTask(taskDetails)
-    //console.log(result.error)
+    //console.log(result)
     if (result?.error) {
       toast.error(result?.error?.data?.message)
     }

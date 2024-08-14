@@ -1,7 +1,7 @@
-import TodoContainer from "@/@/components/todo/TodoContainer";
 import Container from "@/@/components/ui/Container";
 import Navbar from "@/@/components/ui/Navbar";
 import Sidebar from "@/@/components/ui/Sidebar";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
           <Sidebar />
         </div>
         <div className="md:col-span-5 lg:col-span-10">
-          <TodoContainer />
+          <Outlet />
         </div>
       </div>
     </Container>

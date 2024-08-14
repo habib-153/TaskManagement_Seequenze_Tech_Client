@@ -1,15 +1,22 @@
+import { useGetAllTasksQuery } from "@/redux/api/todoApi";
 import SidebarCard from "../sidebar/SidebarCard";
 import AddTodoModal from "../todo/AddTodoModal";
+import { Link } from "react-router-dom";
+import { categoriesTask } from "@/utils/categoriesTask";
 
 const Sidebar = () => {
+  const { data } = useGetAllTasksQuery(undefined);
+
+  const [toDo,onProgress,done,expired] = categoriesTask(data?.data)
   return (
     <>
       {/* this div will contain everything in this component */}
       <div className="flex flex-col gap-4">
         {/* first div for expired tasks */}
+        <Link to='/expired'>
         <SidebarCard
           text="Expired Tasks"
-          number="5"
+          number={expired?.length}
           logo={
             <svg
               className="mb-5 ms-4"
@@ -47,10 +54,11 @@ const Sidebar = () => {
             </svg>
           }
         />
+        </Link>
         {/* second dif for all active tasks */}
         <SidebarCard
           text="All Active Tasks"
-          number="7"
+          number={toDo?.length + onProgress?.length}
           logo={
             <svg
               className="mb-5 ms-4"
@@ -87,7 +95,7 @@ const Sidebar = () => {
         {/* last div for completed tasks */}
         <SidebarCard
           text="Completed tasks"
-          number="7"
+          number={done?.length}
           logo={
             <svg
               className="mb-5 ms-4"
@@ -111,12 +119,6 @@ const Sidebar = () => {
         />
       </div>
       <AddTodoModal />
-      {/* <button
-        //onClick={handleAddTask}
-        className="flex bg-[#0d062d] text-white w-full rounded-3xl h-12 justify-center items-center mt-4"
-      >
-        <FaPlus /> Add task
-      </button> */}
     </>
   );
 };

@@ -1,6 +1,7 @@
 // import { Button } from "../ui/button";
 // import { removeTodo, toggleComplete } from "@/redux/features/todoSlice";
 import { TodoCardProps } from "@/types";
+import { useMemo } from "react";
 
 const TodoCard = ({
   title,
@@ -8,6 +9,15 @@ const TodoCard = ({
   deadline,
   priority,
 }: TodoCardProps) => {
+
+  const formattedDeadline = useMemo(() => {
+    return new Intl.DateTimeFormat('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    }).format(new Date(deadline));
+  }, [deadline])
+
   return (
       <div className="bg-[#FFF]  rounded-2xl  p-4">
         <div className="flex mb-1 justify-between items-center">
@@ -30,7 +40,7 @@ const TodoCard = ({
         <p className="text-[#787486] text-[12px]">{description}</p>
 
         <p className="text-[#838383]">
-          <span className="font-semibold">Deadline:</span> {deadline}
+          <span className="font-semibold">Deadline:</span> {formattedDeadline}
         </p>
       </div>
   );
