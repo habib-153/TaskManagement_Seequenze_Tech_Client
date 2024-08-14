@@ -2,8 +2,10 @@
 // import { removeTodo, toggleComplete } from "@/redux/features/todoSlice";
 import { TodoCardProps } from "@/types";
 import { useMemo } from "react";
+import TaskItem from "./TaskItem";
 
 const TodoCard = ({
+  _id,
   title,
   description,
   deadline,
@@ -34,7 +36,8 @@ const TodoCard = ({
           >
             {priority}
           </span>
-          <p className="font-bold text-lg text-[#0D062D]">...</p>
+          {/* <Button className="font-bold p-0 h-0  text-lg text-[#0D062D]">...</Button> */}
+          <TaskItem id={_id ?? ""}/>
         </div>
         <h3 className="text-lg font-semibold text-[#0D062D]">{title}</h3>
         <p className="text-[#787486] text-[12px]">{description}</p>

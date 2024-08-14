@@ -8,7 +8,7 @@ const ExpiredTasks = () => {
   const { data } = useGetAllTasksQuery(undefined);
 
   const [, , , expiredTasks] = categoriesTask(data?.data);
-  console.log(expiredTasks.length);
+  
   return (
     <div>
       <div className="bg-[#ECEDEE] md:max-w-[354px] rounded-[10px] shadow-[0_4px_4px_0px_rgba(0,0,0,0.25)] p-4">

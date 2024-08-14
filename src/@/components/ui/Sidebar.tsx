@@ -16,7 +16,7 @@ const Sidebar = () => {
         <Link to='/expired'>
         <SidebarCard
           text="Expired Tasks"
-          number={expired?.length}
+          number={expired?.length || 0}
           logo={
             <svg
               className="mb-5 ms-4"
@@ -58,7 +58,7 @@ const Sidebar = () => {
         {/* second dif for all active tasks */}
         <SidebarCard
           text="All Active Tasks"
-          number={toDo?.length + onProgress?.length}
+          number={(toDo?.length + onProgress?.length) || 0}
           logo={
             <svg
               className="mb-5 ms-4"
@@ -95,7 +95,7 @@ const Sidebar = () => {
         {/* last div for completed tasks */}
         <SidebarCard
           text="Completed tasks"
-          number={done?.length}
+          number={done?.length || 0}
           logo={
             <svg
               className="mb-5 ms-4"

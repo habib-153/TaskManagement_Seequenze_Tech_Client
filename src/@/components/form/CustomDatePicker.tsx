@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DatePicker, Form } from "antd";
+import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
 
 type TDatePickerProps = {
   name: string;
   label?: string;
-  control?: any;
+  defaultValue?: Date
 };
 
-const CustomDatePicker = ({ name, label, control }: TDatePickerProps) => {
+const CustomDatePicker = ({ name, label, defaultValue }: TDatePickerProps) => {
+
   return (
     <div>
-      <Controller
-        control={control}
+      <Controller defaultValue={dayjs(defaultValue)}
         name={name}
         render={({ field }) => (
           <Form.Item label={label}>
@@ -21,7 +22,7 @@ const CustomDatePicker = ({ name, label, control }: TDatePickerProps) => {
               placeholder="Deadline"
               {...field}
               size="large"
-              style={{ width: "100%" }}
+              defaultValue={dayjs(defaultValue)} style={{ width: "100%" }}
             />
           </Form.Item>
         )}

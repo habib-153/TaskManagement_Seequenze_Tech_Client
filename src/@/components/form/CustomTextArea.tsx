@@ -3,15 +3,15 @@ import { Form, Input } from "antd";
 import { Controller } from "react-hook-form";
 
 type TInputProps = {
-  type: string;
+ // type: string;
   name: string;
   label?: string;
   placeholder?: string;
   defaultValue?: string;
 };
 
-const CustomInput = ({
-  type,
+const CustomTextarea = ({
+  //type,
   name,
   placeholder,
   defaultValue,
@@ -22,12 +22,12 @@ const CustomInput = ({
         name={name} defaultValue={defaultValue}
         render={({ field, fieldState: { error } }) => (
           <Form.Item>
-            <Input
+            <Input.TextArea
               {...field}
               size="large"
               className="border-t-0 border-x-0  border-b-1 hover:outline-none rounded-none border-[#000]"
               placeholder={placeholder}
-              type={type}
+              //type={type}
               id={name}
             />
              {error && <small className="text-red-500">{error.message}</small>}
@@ -38,4 +38,4 @@ const CustomInput = ({
   );
 };
 
-export default CustomInput;
+export default CustomTextarea;
