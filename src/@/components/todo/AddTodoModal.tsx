@@ -20,19 +20,18 @@ import {
 } from "../ui/select";
 import { useAddTaskMutation } from "@/redux/api/todoApi";
 import { FaPlus } from "react-icons/fa";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import CustomInput from "../form/CustomInput";
 import CustomDatePicker from "../form/CustomDatePicker";
-import { IFormInput } from "@/types";
 import { toast } from "sonner";
+import TodoForm from "../form/TodoForm";
 
 const AddTodoModal = () => {
-  const { control, handleSubmit } = useForm<IFormInput>();
   const [priority, setPriority] = useState("");
 
   const [addTask] = useAddTaskMutation();
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // console.log(data);
     const taskDetails = {
       title: data.title,
@@ -67,16 +66,14 @@ const AddTodoModal = () => {
             <span className="text-xl">Add task</span>
           </DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <TodoForm onSubmit={onSubmit}>
           <div className="">
             <CustomInput
-              control={control}
               name="title"
               type="text"
               placeholder="Enter Task Name"
             />
             <CustomInput
-              control={control}
               name="description"
               type="text"
               placeholder="Enter Description"
@@ -95,9 +92,8 @@ const AddTodoModal = () => {
               </SelectContent>
             </Select>
             <div className="flex items-center gap-6 mt-3">
-              <CustomDatePicker name="deadline" control={control} />
+              <CustomDatePicker name="deadline" />
               <CustomInput
-                control={control}
                 name="assignedTo"
                 placeholder="Assigned To"
                 type="text"
@@ -109,7 +105,7 @@ const AddTodoModal = () => {
               <Button type="submit">Submit</Button>
             </DialogClose>
           </div>
-        </form>
+        </TodoForm>
       </DialogContent>
     </Dialog>
   );
