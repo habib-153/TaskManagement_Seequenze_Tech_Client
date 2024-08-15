@@ -1,30 +1,48 @@
-# React + TypeScript + Vite
+# TaskManagement
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+TaskManagement is a comprehensive task management application designed to help users efficiently manage their tasks. The application includes features such as basic CRUD operations for tasks, a UI slider for navigating between task categories, advanced async operations to fetch streaming data, and automatic task timeout handling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Want to Visit? [Live Link](https://task-management-seequenze-tech-client.vercel.app)
 
-## Expanding the ESLint configuration
+### Server Repo: [Server Repo Link](https://github.com/habib-153/TaskManagement_Seequenze_Tech_Server.git)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Objective
 
-- Configure the top-level `parserOptions` property like this:
+Develop a task management application with the following features:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Basic CRUD operations for tasks.
+- A UI slider for navigating between task categories.
+- Advanced async operations to fetch streaming data.
+- Automatic task timeout handling.
+
+## Installation Steps
+
+Follow these steps to install and set up the project:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/habib-153/TaskManagement_Seequenze_Tech_Client.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd TaskManagement_Seequenze_Tech_Client
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+To start the development server, run:
+
+```bash
+npm run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
