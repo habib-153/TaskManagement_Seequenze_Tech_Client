@@ -25,6 +25,7 @@ import CustomInput from "../form/CustomInput";
 import CustomDatePicker from "../form/CustomDatePicker";
 import { toast } from "sonner";
 import TodoForm from "../form/TodoForm";
+import Swal from "sweetalert2";
 
 const AddTodoModal = () => {
   const [priority, setPriority] = useState("");
@@ -40,15 +41,62 @@ const AddTodoModal = () => {
       deadline: data.deadline,
       assignedTo: data.assignedTo,
     };
-    console.log(taskDetails);
+    // console.log(taskDetails);
 
-    const result = await addTask(taskDetails)
+    const result = await addTask(taskDetails);
     //console.log(result)
     if (result?.error) {
-      toast.error(result?.error?.data?.message)
-    }
-    else{
-      toast.success(result?.data?.message)
+      toast.error("Something went wrong");
+    } else {
+      Swal.fire({
+        text: "New task has been created successfully",
+        html: `
+        <div style="text-align: center;">
+          <figure style="margin: auto; width: 100px;">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="84"
+              height="84"
+              viewBox="0 0 84 84"
+              fill="none"
+            >
+              <path
+                d="M59.7758 29.1513L59.7757 29.1513C61.3781 30.8008 61.3853 33.4052 59.7706 35.0199L39.979 54.8116C39.1677 55.6229 38.1195 55.9997 37.0421 55.9997C36.0036 55.9997 34.9568 55.6211 34.1476 54.8123L59.7758 29.1513ZM59.7758 29.1513L59.7706 29.1461C58.1587 27.5342 55.5088 27.5342 53.8969 29.1461L37.0421 46.0009L30.104 39.0628C28.492 37.4509 25.8421 37.4509 24.2302 39.0628C22.6155 40.6775 22.6227 43.2819 24.2251 44.9314L24.2251 44.9315L24.2309 44.9373L34.1469 54.8116L59.7758 29.1513ZM60.0837 0.833008C67.0248 0.833008 72.7848 3.26671 76.8108 7.4805C80.8386 11.6963 83.1671 17.7325 83.1671 24.9997V59.0455C83.1671 66.2895 80.8389 72.3141 76.811 76.5244C72.785 80.7327 67.0248 83.1664 60.0837 83.1664H23.9587C17.0176 83.1664 11.2467 80.7326 7.21022 76.5239C3.17196 72.3135 0.83374 66.2888 0.83374 59.0455V24.9997C0.83374 17.7331 3.17221 11.697 7.21045 7.48095C11.2469 3.2668 17.0176 0.833008 23.9587 0.833008H60.0837Z"
+                fill="black"
+                stroke="black"
+              />
+            </svg>
+          </figure>
+          <p style="font-weight: 600; margin-top:20px; margin-bottom:5px">New task has been created successfully</p>
+        </div>
+      `,
+        showConfirmButton: true,
+        confirmButtonText: "Back",
+        confirmButtonColor: "#000000",
+      });
+      // toast(
+      //   <div className="rounded-[30px] p-3 text-center flex flex-col items-center justify-center">
+          // <figure>
+          //   <svg
+          //     xmlns="http://www.w3.org/2000/svg"
+          //     width="84"
+          //     height="84"
+          //     viewBox="0 0 84 84"
+          //     fill="none"
+          //   >
+          //     <path
+          //       d="M59.7758 29.1513L59.7757 29.1513C61.3781 30.8008 61.3853 33.4052 59.7706 35.0199L39.979 54.8116C39.1677 55.6229 38.1195 55.9997 37.0421 55.9997C36.0036 55.9997 34.9568 55.6211 34.1476 54.8123L59.7758 29.1513ZM59.7758 29.1513L59.7706 29.1461C58.1587 27.5342 55.5088 27.5342 53.8969 29.1461L37.0421 46.0009L30.104 39.0628C28.492 37.4509 25.8421 37.4509 24.2302 39.0628C22.6155 40.6775 22.6227 43.2819 24.2251 44.9314L24.2251 44.9315L24.2309 44.9373L34.1469 54.8116L59.7758 29.1513ZM60.0837 0.833008C67.0248 0.833008 72.7848 3.26671 76.8108 7.4805C80.8386 11.6963 83.1671 17.7325 83.1671 24.9997V59.0455C83.1671 66.2895 80.8389 72.3141 76.811 76.5244C72.785 80.7327 67.0248 83.1664 60.0837 83.1664H23.9587C17.0176 83.1664 11.2467 80.7326 7.21022 76.5239C3.17196 72.3135 0.83374 66.2888 0.83374 59.0455V24.9997C0.83374 17.7331 3.17221 11.697 7.21045 7.48095C11.2469 3.2668 17.0176 0.833008 23.9587 0.833008H60.0837Z"
+          //       fill="black"
+          //       stroke="black"
+          //     />
+          //   </svg>
+          // </figure>
+      //     <p>New task has been created successfully</p>
+      //     <Link to="/">
+      //       <Button className="w-full">Back</Button>
+      //     </Link>
+      //   </div>
+      // );
     }
   };
 

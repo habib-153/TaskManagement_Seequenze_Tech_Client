@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { categoriesTask } from "@/utils/categoriesTask";
 
 const Sidebar = () => {
-  const { data } = useGetAllTasksQuery(undefined);
+  const { data } = useGetAllTasksQuery({});
 
   const [toDo,onProgress,done,expired] = categoriesTask(data?.data)
   return (

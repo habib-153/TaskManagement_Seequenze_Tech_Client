@@ -29,11 +29,10 @@ import {
 import TodoForm from "../form/TodoForm";
 import { useEffect, useState } from "react";
 import CustomTextarea from "../form/CustomTextArea";
-import Loading from "../ui/Loading";
 import { handleDeleteProduct } from "@/utils/handleDeleteTask";
 
 const TaskItem = ({ id }: { id: string }) => {
-  const { data, isLoading } = useGetSingleTaskQuery(id);
+  const { data } = useGetSingleTaskQuery(id);
 
   const [priority, setPriority] = useState<string | undefined>(undefined);
 
@@ -46,7 +45,7 @@ const TaskItem = ({ id }: { id: string }) => {
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
 
-  if (isLoading) return <Loading />;
+  //if (isLoading) return <Loading />;
 
   const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
     const payload = {
@@ -60,7 +59,7 @@ const TaskItem = ({ id }: { id: string }) => {
     const result = await updateTask({ payload, id });
     // //console.log(result)
     if (result?.error) {
-      toast.error(result?.error?.data?.message);
+      toast.error("Something went wrong");
     } else {
       toast.success(result?.data?.message);
     }

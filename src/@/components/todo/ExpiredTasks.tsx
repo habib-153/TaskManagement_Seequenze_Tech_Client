@@ -5,7 +5,7 @@ import { TodoCardProps } from "@/types";
 import TodoCard from "./TodoCard";
 
 const ExpiredTasks = () => {
-  const { data } = useGetAllTasksQuery(undefined);
+  const { data } = useGetAllTasksQuery({});
 
   const [, , , expiredTasks] = categoriesTask(data?.data);
   

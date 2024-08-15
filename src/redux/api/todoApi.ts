@@ -3,9 +3,11 @@ import { baseApi } from "./baseApi";
 const todoApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllTasks: builder.query({
-      query: (priority) => {
+      query: ({searchTerm, priority}) => {
         const params = new URLSearchParams();
-
+        if (searchTerm) {
+          params.append("searchTerm", searchTerm);
+        }
         if (priority) {
           params.append("priority", priority);
         }
@@ -15,7 +17,7 @@ const todoApi = baseApi.injectEndpoints({
           params: params,
         };
       },
-      providesTags: ["Task"],
+      providesTags: ["Task"]
     }),
     addTask: builder.mutation({
       query: (data) => ({

@@ -5,12 +5,14 @@ import { useAppSelector } from "@/redux/hook";
 import { TodoCardProps } from "../../../types";
 import TodoTitle from "./TodoTitle";
 import { categoriesTask } from "@/utils/categoriesTask";
+import Loading from "../ui/Loading";
 
 const TodoContainer = () => {
-  const { priority } = useAppSelector((state) => state.filter);
+  const { priority, searchTerm } = useAppSelector((state) => state.filter);
 
-  const { data } = useGetAllTasksQuery(priority);
+  const { data, isLoading } = useGetAllTasksQuery({searchTerm, priority});
 
+  if (isLoading) return <Loading />;
   const [toDo, onProgress, done] = categoriesTask(data?.data)
 
   // console.log(toDo.length, onProgress.length, done.length);
